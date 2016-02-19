@@ -30,4 +30,19 @@ public class LifeTest {
         assertFalse(life.cellShouldSurvive(0));
         assertFalse(life.cellShouldSurvive(1));
     }
+
+    @Test
+    public void testSurvival() {
+        assertTrue(life.cellShouldSurvive(2));
+        assertTrue(life.cellShouldSurvive(3));
+    }
+
+    @Test
+    public void testOvercrowding() {
+        assertFalse(life.cellShouldSurvive(4));
+        assertFalse(life.cellShouldSurvive(5));
+        assertFalse(life.cellShouldSurvive(6));
+        assertFalse(life.cellShouldSurvive(7));
+        assertFalse(life.cellShouldSurvive(8));
+    }
 }

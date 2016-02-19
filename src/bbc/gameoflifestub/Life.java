@@ -15,6 +15,14 @@ public class Life {
     }
 
     public boolean cellShouldSurvive(int numNeighbours) {
-        throw new UnsupportedOperationException();
+        return !isUnderpopulated(numNeighbours) && !isOvercrowded(numNeighbours);
+    }
+
+    private boolean isUnderpopulated(int numNeighbours) {
+        return numNeighbours < 2;
+    }
+    
+    private boolean isOvercrowded(int numNeighbours) {
+        return numNeighbours > 3;
     }
 }
