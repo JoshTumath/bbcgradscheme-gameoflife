@@ -58,15 +58,20 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-              	
-    <target name="test">
+    <target name="CellTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
+            <test name="bbc.gameoflifestub.CellTest" todir="${junit.output.dir}"/>
             <classpath refid="GameOfLife.classpath"/>
-        	<batchtest fork="yes" todir="${junit.output.dir}">
-                <fileset dir="${test.dir}" includes="*Test.java"/>
-            </batchtest>
+        </junit>
+    </target>
+    <target name="LifeTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="bbc.gameoflifestub.LifeTest" todir="${junit.output.dir}"/>
+            <classpath refid="GameOfLife.classpath"/>
         </junit>
     </target>
     <target name="junitreport">
