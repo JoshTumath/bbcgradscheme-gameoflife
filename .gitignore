@@ -4,7 +4,7 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
+#*.jar # Needed for Travis CI to use libs for testing
 *.war
 *.ear
 
