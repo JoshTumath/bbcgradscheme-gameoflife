@@ -9,6 +9,14 @@ public class Cell {
         this.y = y;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     public int hashCode() {
         return 31 * 31 * x + 31 * y;
     }
