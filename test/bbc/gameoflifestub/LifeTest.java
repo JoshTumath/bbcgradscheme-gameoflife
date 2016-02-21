@@ -1,6 +1,7 @@
 package bbc.gameoflifestub;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.Before;
@@ -9,19 +10,19 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class LifeTest {
-    protected Set<Cell> setOfCells;
+    protected Set<Cell> cells;
     protected Life life;
 
     @Before
     public void setUp() {
-        setOfCells = new HashSet<Cell>();
-        life = new Life(setOfCells);
+        cells = new HashSet<Cell>();
+        life = new Life(cells);
     }
 
     @Test
     public void testInitialisation() {
-        setOfCells.add(new Cell(1, 1));
-        setOfCells.add(new Cell(2, 2));
+        cells.add(new Cell(1, 1));
+        cells.add(new Cell(2, 2));
 
         assertEquals(2, life.getLiveCells().size());
     }
@@ -56,22 +57,49 @@ public class LifeTest {
 
     @Test
     public void testCountingNeighboursOfNeighbouredCell() {
-        setOfCells.add(new Cell(1, 1));
-        setOfCells.add(new Cell(2, 2));
+        cells.add(new Cell(1, 1));
+        cells.add(new Cell(2, 2));
         assertEquals(1, life.countLiveCellNeighbours(new Cell(0, 0)));
         assertEquals(1, life.countLiveCellNeighbours(new Cell(1, 1)));
         assertEquals(1, life.countLiveCellNeighbours(new Cell(2, 2)));
         assertEquals(2, life.countLiveCellNeighbours(new Cell(1, 2)));
         assertEquals(2, life.countLiveCellNeighbours(new Cell(2, 1)));
 
-        setOfCells.add(new Cell(100, 100));
-        setOfCells.add(new Cell(101, 100));
-        setOfCells.add(new Cell(102, 100));
-        setOfCells.add(new Cell(100, 102));
-        setOfCells.add(new Cell(101, 102));
-        setOfCells.add(new Cell(102, 102));
+        cells.add(new Cell(100, 100));
+        cells.add(new Cell(101, 100));
+        cells.add(new Cell(102, 100));
+        cells.add(new Cell(100, 102));
+        cells.add(new Cell(101, 102));
+        cells.add(new Cell(102, 102));
         assertEquals(4, life.countLiveCellNeighbours(new Cell(100, 101)));
         assertEquals(6, life.countLiveCellNeighbours(new Cell(101, 101)));
         assertEquals(4, life.countLiveCellNeighbours(new Cell(102, 101)));
+    }
+    
+    @Test
+    public void testGettingEmptyNeighbouringCells() {
+        List<Cell> emptyCells;
+        
+        emptyCells = life.getEmptyNeighbouringCells(new Cell(2, 2));
+        assertEquals(8, emptyCells.size());
+        assertTrue(emptyCells.contains(new Cell(1, 1)));
+        assertTrue(emptyCells.contains(new Cell(1, 2)));
+        assertTrue(emptyCells.contains(new Cell(1, 3)));
+        assertTrue(emptyCells.contains(new Cell(2, 1)));
+        assertTrue(emptyCells.contains(new Cell(2, 3)));
+        assertTrue(emptyCells.contains(new Cell(3, 1)));
+        assertTrue(emptyCells.contains(new Cell(3, 2)));
+        assertTrue(emptyCells.contains(new Cell(3, 3)));
+        
+        cells.add(new Cell(1, 1));
+        cells.add(new Cell(1, 3));
+        cells.add(new Cell(2, 1));
+        cells.add(new Cell(2, 3));
+        emptyCells = life.getEmptyNeighbouringCells(new Cell(2, 2));
+        assertEquals(4, emptyCells.size());
+        assertTrue(emptyCells.contains(new Cell(1, 2)));
+        assertTrue(emptyCells.contains(new Cell(3, 1)));
+        assertTrue(emptyCells.contains(new Cell(3, 2)));
+        assertTrue(emptyCells.contains(new Cell(3, 3)));
     }
 }
