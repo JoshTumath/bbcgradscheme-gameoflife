@@ -26,4 +26,8 @@ public class Cell {
 
         return otherCell.x == x && otherCell.y == y;
     }
+    
+    public String toString() {
+        return "(" + x + "," + y + ")";
+    }
 }
