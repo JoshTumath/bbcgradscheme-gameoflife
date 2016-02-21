@@ -34,7 +34,7 @@ public class GameTest {
         cells.add(new Cell(1, 1));
         cells.add(new Cell(1, 2));
         game.initializeGrid(new Life(cells));
-        game.evolve();System.out.println(cells);
+        game.evolve();
         assertTrue(game.getLife().getLiveCells().isEmpty());
     }
     
