@@ -26,7 +26,7 @@ public class Life {
     public int countLiveCellNeighbours(final Cell cell) {
         int result = 0;
 
-        for (Cell neighbouringCell : getNeighbouringCells(cell)) {
+        for (final Cell neighbouringCell : getNeighbouringCells(cell)) {
             if (liveCells.contains(new Cell(neighbouringCell.getX(), neighbouringCell.getY()))) {
                 result++;
             }
@@ -45,7 +45,7 @@ public class Life {
     public List<Cell> getEmptyNeighbouringCells(final Cell cell) {
         final List<Cell> result = new LinkedList<Cell>();
 
-        for (Cell neighbouringCell : getNeighbouringCells(cell)) {
+        for (final Cell neighbouringCell : getNeighbouringCells(cell)) {
             if (!liveCells.contains(new Cell(neighbouringCell.getX(), neighbouringCell.getY()))) {
                 result.add(neighbouringCell);
             }

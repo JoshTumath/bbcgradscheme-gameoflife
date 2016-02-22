@@ -46,7 +46,7 @@ public class Game {
 
         final Set<Cell> evolvedCells = newInstanceOfSet();
 
-        for (Cell cell : life.getLiveCells()) {
+        for (final Cell cell : life.getLiveCells()) {
             // To satisfy rules 1, 2 and 3, we check if this cell can survive.
             if (life.cellShouldSurvive(life.countLiveCellNeighbours(cell))) {
                 evolvedCells.add(new Cell(cell.getX(), cell.getY()));
@@ -54,7 +54,7 @@ public class Game {
 
             // To satisfy rule 4, we check if surrounding empty cells can
             // become alive.
-            for (Cell emptyCell : life.getEmptyNeighbouringCells(cell)) {
+            for (final Cell emptyCell : life.getEmptyNeighbouringCells(cell)) {
                 if (life.cellShouldBeCreated(life.countLiveCellNeighbours(emptyCell))) {
                     evolvedCells.add(new Cell(emptyCell.getX(), emptyCell.getY()));
                 }
