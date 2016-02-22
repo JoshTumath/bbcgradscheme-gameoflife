@@ -12,7 +12,7 @@ public class Game {
      * @param life
      *            life that has been set with data of all the living cells
      */
-    public void initializeGrid(Life life) {
+    public void initializeGrid(final Life life) {
         this.life = life;
     }
     
@@ -44,7 +44,7 @@ public class Game {
             throw new FailedEvolutionException("Grid contains no live cells");
         }
 
-        Set<Cell> evolvedCells = newInstanceOfSet();
+        final Set<Cell> evolvedCells = newInstanceOfSet();
 
         for (Cell cell : life.getLiveCells()) {
             // To satisfy rules 1, 2 and 3, we check if this cell can survive.

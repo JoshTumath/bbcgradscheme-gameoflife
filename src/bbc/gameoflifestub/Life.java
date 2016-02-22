@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Set;
 
 public class Life {
-    private Set<Cell> liveCells;
+    private final Set<Cell> liveCells;
 
-    public Life(Set<Cell> initialLiveCells) {
+    public Life(final Set<Cell> initialLiveCells) {
         this.liveCells = initialLiveCells;
     }
 
@@ -23,7 +23,7 @@ public class Life {
      *            the cell to check around
      * @return number of live neighbouring cells
      */
-    public int countLiveCellNeighbours(Cell cell) {
+    public int countLiveCellNeighbours(final Cell cell) {
         int result = 0;
 
         for (Cell neighbouringCell : getNeighbouringCells(cell)) {
@@ -42,8 +42,8 @@ public class Life {
      *            the cell to check around
      * @return list of cells that are empty
      */
-    public List<Cell> getEmptyNeighbouringCells(Cell cell) {
-        List<Cell> result = new LinkedList<Cell>();
+    public List<Cell> getEmptyNeighbouringCells(final Cell cell) {
+        final List<Cell> result = new LinkedList<Cell>();
 
         for (Cell neighbouringCell : getNeighbouringCells(cell)) {
             if (!liveCells.contains(new Cell(neighbouringCell.getX(), neighbouringCell.getY()))) {
@@ -61,8 +61,8 @@ public class Life {
      *            the cell to check around
      * @return list of neighbouring cells
      */
-    private List<Cell> getNeighbouringCells(Cell cell) {
-        List<Cell> result = new LinkedList<Cell>();
+    private List<Cell> getNeighbouringCells(final Cell cell) {
+        final List<Cell> result = new LinkedList<Cell>();
 
         for (int yModifier = -1; yModifier <= 1; yModifier++) {
             for (int xModifier = -1; xModifier <= 1; xModifier++) {
@@ -84,7 +84,7 @@ public class Life {
      *            number of live neighbours around a cell
      * @return true if the cell will survive
      */
-    public boolean cellShouldSurvive(int numNeighbours) {
+    public boolean cellShouldSurvive(final int numNeighbours) {
         return !isUnderpopulated(numNeighbours) && !isOvercrowded(numNeighbours);
     }
 
@@ -96,7 +96,7 @@ public class Life {
      *            number of live neighbours around a cell
      * @return true if the cell should be created
      */
-    public boolean cellShouldBeCreated(int numNeighbours) {
+    public boolean cellShouldBeCreated(final int numNeighbours) {
         return numNeighbours == 3;
     }
 
@@ -107,7 +107,7 @@ public class Life {
      *            number of live neighbours around a cell
      * @return true if the cell will survive
      */
-    private boolean isUnderpopulated(int numNeighbours) {
+    private boolean isUnderpopulated(final int numNeighbours) {
         return numNeighbours < 2;
     }
 
@@ -118,7 +118,7 @@ public class Life {
      *            number of live neighbours around a cell
      * @return true if the cell will survive
      */
-    private boolean isOvercrowded(int numNeighbours) {
+    private boolean isOvercrowded(final int numNeighbours) {
         return numNeighbours > 3;
     }
 }

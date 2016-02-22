@@ -1,10 +1,10 @@
 package bbc.gameoflifestub;
 
 public class Cell {
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
-    public Cell(int x, int y) {
+    public Cell(final int x, final int y) {
         this.x = x;
         this.y = y;
     }
@@ -21,8 +21,8 @@ public class Cell {
         return 31 * 31 * x + 31 * y;
     }
 
-    public boolean equals(Object other) {
-        Cell otherCell = (Cell) other;
+    public boolean equals(final Object other) {
+        final Cell otherCell = (Cell) other;
 
         return otherCell.x == x && otherCell.y == y;
     }
